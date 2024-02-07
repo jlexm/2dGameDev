@@ -7,6 +7,6 @@ How to Run:
 2. `git pull` to check for latest updates.
 3. open unity hub
 4. add the folder
-5. use Unity Editor Version <mark>2021.3.32f1<mark>. 
+5. use Unity Editor Version `2021.3.32f1`. 
 6. open the project
 7. wait to finish downloading the project dependencies
