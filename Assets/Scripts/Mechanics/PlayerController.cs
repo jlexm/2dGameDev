@@ -46,8 +46,6 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
-
-            // Set the initial bullet prefab
             currentBulletPrefab = bulletPrefab1;
         }
 
@@ -57,27 +55,21 @@ namespace Platformer.Mechanics
             {
                 move.x = Input.GetAxis("Horizontal");
 
-                // Check for bullet selection input
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
-                    // Switch to bulletPrefab1
                     currentBulletPrefab = bulletPrefab1;
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
-                    // Switch to bulletPrefab2
                     currentBulletPrefab = bulletPrefab2;
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
-                    // Switch to bulletPrefab3
                     currentBulletPrefab = bulletPrefab3;
                 }
 
-                // Check for shooting input
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    // Shoot the selected bullet
                     ShootBullet();
                 }
 
@@ -130,24 +122,12 @@ namespace Platformer.Mechanics
 
         void ShootBullet()
         {
-            // Instantiate the selected bullet at the fire point position and rotation
             GameObject bullet = Instantiate(currentBulletPrefab, firePoint.position, Quaternion.identity);
 
-            // Access the BulletController script and set its speed
             BulletController bulletController = bullet.GetComponent<BulletController>();
             if (bulletController != null)
             {
-                // Set the bullet's speed
                 bulletController.speed = 10f;
-
-                // Set the bullet's direction based on player's facing direction
-                float direction = spriteRenderer.flipX ? -1f : 1f;
-                bulletController.SetDirection(direction);
-
-            }
-            else
-            {
-                Debug.LogError("BulletController component not found on the instantiated bullet.");
             }
         }
 
